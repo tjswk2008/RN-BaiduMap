@@ -1,6 +1,6 @@
 /**
 * @Date:   2017-03-16 11:02:56
- * @Last modified time: 2017-05-16T11:00:35+08:00
+ * @Last modified time: 2017-05-16T16:14:17+08:00
 */
 
 package com.yacai;
@@ -20,12 +20,11 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.microsoft.codepush.react.CodePush;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import org.lovebing.reactnative.baidumap.BaiduMapPackage;
 
 import java.util.Arrays;
 import java.util.List;
-import devinxu.mynativemodeulaexample.BGNativeExamplePackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
