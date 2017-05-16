@@ -1,11 +1,11 @@
 /**
  * @Date:   2017-04-24T14:07:16+08:00
- * @Last modified time: 2017-04-25T11:06:40+08:00
+ * @Last modified time: 2017-05-16T11:00:43+08:00
  */
 
 
 
-package com.awesomeproject;
+package com.yacai;
 
 import android.view.View;
 import com.facebook.react.ReactActivity;
@@ -20,7 +20,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "AwesomeProject";
+        return "RNBaiduMap";
     }
 
     @Override

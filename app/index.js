@@ -1,10 +1,9 @@
 /**
 * @Date:   2017-03-16 11:44:04
- * @Last modified time: 2017-04-24T16:27:52+08:00
+ * @Last modified time: 2017-05-16T10:49:03+08:00
 */
 
 import React, { Component } from 'react';
-import { AppState} from 'react-native';
 import { Scene, Reducer, Router, Modal} from 'react-native-router-flux';
 import Video from './containers/Video';
 import Camera from './containers/Camera';
@@ -16,7 +15,6 @@ import Shop from './containers/Shop';
 import Order from './containers/Order';
 import Pay from './containers/Pay';
 import Entertainment from './containers/Entertainment';
-import codePush from 'react-native-code-push';
 
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params);

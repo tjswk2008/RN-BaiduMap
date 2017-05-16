@@ -1,6 +1,6 @@
 /**
 * @Date:   2017-03-17 10:55:12
- * @Last modified time: 2017-04-26T16:53:46+08:00
+ * @Last modified time: 2017-05-16T15:43:13+08:00
 */
 
 import React from 'react';
@@ -15,7 +15,6 @@ import {Actions} from "react-native-router-flux";
 import * as Animatable from 'react-native-animatable';
 
 let pixel = PixelRatio.get();
-let {BGNativeExampleModule} = NativeModules;
 
 export default class extends React.Component {
     constructor(props) {
@@ -40,17 +39,7 @@ export default class extends React.Component {
     }
 
     takePicture() {
-        // const options = {target: Camera.constants.CaptureTarget.memory};
-        // this.camera.capture({metadata: options}).then(res=>{
-        //     this.setState({hairSelected: false});
-        //     Actions.share({url: res.path});
-        // }).catch(err => {
-        //     alert(err);
-        // });
-        BGNativeExampleModule.takePicture().then(res=>{
-            Actions.share({url: res});
-        });
-        // Actions.share({url: require('./images/share.jpg')});
+        Actions.share({url: require('./images/share.jpg')});
     }
 
     showHairs() {
@@ -61,32 +50,7 @@ export default class extends React.Component {
     }
 
     chooseHair() {
-        let hairSrc = require('./images/hair.png');
         this.setState({hairSelected: true, showHairs: false});
-    }
-
-    renderCanvas(canvas) {
-      // Canvas demo is from here: http://codepen.io/antoniskamamis/pen/ECrKd
-      var ctx = canvas.getContext('2d');
-
-      canvas.width = 200;
-      canvas.height = 200;
-      canvas.style.left = (window.innerWidth - 200)/2+'px';
-
-      if(window.innerHeight>200)
-      canvas.style.top = (window.innerHeight - 200)/2+'px';
-
-      function draw(){
-        ctx.clearRect(0, 0, 200, 200);
-        ctx.globalCompositeOperation = 'lighter';
-        let img = new Image();
-        img.src = 'file:///storage/emulated/0/download/share.jpg';
-        img.onload = () => {
-            ctx.drawImage(img, 0, 0, 200, 200);
-        }
-      }
-
-      draw();
     }
 
     render(){
@@ -102,14 +66,9 @@ export default class extends React.Component {
         });
         return (
             <View style={[styles.container, this.props.style]}>
-                <Face ref={(cam) => {
+                <View ref={(cam) => {
                     this.camera = cam;
-                  }} style={{width: '100%', height: 1920/pixel, position: 'absolute'}}></Face>
-                {/* <Canvas
-                  context={{message: 'Hello!'}}
-                  render={this.renderCanvas}
-                  style={{width: '100%', height: 1920/pixel, position: 'absolute'}}
-                /> */}
+                  }} style={{width: '100%', height: 1920/pixel, position: 'absolute'}}></View>
                 {!this.state.showHairs && this.state.hairSelected && <TouchableOpacity style={{width: 240/pixel, height: 240/pixel, position: 'absolute', left: 420/pixel, bottom: 280/pixel}}
                     onPress={()=>this.takePicture()}>
                     <Image

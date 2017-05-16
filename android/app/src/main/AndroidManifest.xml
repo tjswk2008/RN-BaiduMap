@@ -1,10 +1,10 @@
 <!--
 @Date:   2017-03-16 11:02:56
-@Last modified time: 2017-05-16T10:21:43+08:00
+@Last modified time: 2017-05-16T11:13:46+08:00
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.awesomeproject"
+    package="com.yacai"
     android:versionCode="1"
     android:versionName="1.0">
 
@@ -28,7 +28,7 @@
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme">
-      <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="xx"/>
+      <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="Ml7kpKVM8XswMHxQ9oq3cnd4KvSotFTH"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
