@@ -145,12 +145,12 @@ export default class extends React.Component {
                                   {transform: [{translateY: this.state.offset}]}]}>
                 <View style={{
                     width:1000 / pixel,
-                    height:607.5 / pixel,
+                    height:562.5 / pixel,
                     justifyContent: "center",
                     alignItems: "center",
                     backgroundColor: "black"
                 }}>
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                       style={styles.fullScreen}
                       onPress={() => this.setState({ paused: !this.state.paused })}
                     >
@@ -170,7 +170,26 @@ export default class extends React.Component {
                         onAudioFocusChanged={this.onAudioFocusChanged}
                         repeat={true}
                       />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
+                    <WebView
+                      javaScriptEnabled={true}
+                      loadsImagesAutomatically={true}
+                      automaticallyAdjustContentInsets={true}
+                      contentInset={{top: 0, right: 0, bottom: 0, left: 0}}
+                      source={{html: `
+                        <iframe src='http://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?
+                            vid=77a4ba9809e102a2148796a15c4d964c
+                            &tvId=485218900
+                            &accessToken=2.f22860a2479ad60d8da7697274de9346
+                            &appKey=3955c3425820435e86d0f4cdfe56f5e7
+                            &appId=1368
+                            &height=100%&width=100%'
+                            frameborder='0' width='100%' height='100%' allowfullscreen='true'>
+                        </iframe>
+                      `}}
+                      opaque={false}
+                      style={styles.fullScreen}
+                    />
                 </View>
                 <TouchableOpacity style={{
                     height: 70 / pixel,

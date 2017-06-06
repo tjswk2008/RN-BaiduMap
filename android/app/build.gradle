@@ -101,6 +101,9 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+        debug{
+            signingConfig signingConfigs.release
+        }
     }
     task ndkBuild(type: Exec) {
         if (Os.isFamily(Os.FAMILY_WINDOWS)) {
