@@ -9,12 +9,18 @@ import Video from './containers/Video';
 import Camera from './containers/Camera';
 import HairDetail from './containers/HairDetail';
 import Introduction from './containers/Introduction';
-import Preview from './containers/Preview';
+import * as Preview from './containers/Preview';
 import Share from './containers/Share';
 import Shop from './containers/Shop';
 import Order from './containers/Order';
 import Pay from './containers/Pay';
 import Entertainment from './containers/Entertainment';
+
+import * as reducers from './reducers';
+import connectComponent from './utils/connectComponent';
+import { createStore , applyMiddleware , combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params);
@@ -40,6 +46,13 @@ const getSceneStyle = (props, computedProps) => {
   return style;
 };
 
+let middlewares = [
+  thunk
+]
+const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
+const reducer = combineReducers(reducers);
+const store = createStoreWithMiddleware(reducer);
+
 class App extends Component {
   componentDidMount() {
   }
@@ -49,23 +62,25 @@ class App extends Component {
 
   render() {
     return (
-      <Router createReducer={reducerCreate} getSceneStyle={getSceneStyle} showNavigationBar={false} >
-          <Scene key="modal" component={Modal} >
-            <Scene key="root" hideNavBar hideTabBar>
-              <Scene key="entertainment" direction="fade" component={Entertainment} title="Entertainment"/>
-              <Scene key="shop" direction="fade" component={Shop} title="Shop"/>
-              <Scene key="order" direction="fade" component={Order} title="Order"/>
-              <Scene key="pay" direction="fade" component={Pay} title="Pay"/>
-              {/* <Scene key="preview" direction="fade" type='reset' component={Preview} title="Preview"/> */}
-              <Scene key="preview" direction="fade" component={Preview} title="Preview"/>
-              <Scene key="introduction" direction="fade" component={Introduction} title="Introduction"/>
-              <Scene key="camera" direction="fade" initial component={Camera} title="Camera"/>
+        <Provider store={store}>
+          <Router createReducer={reducerCreate} getSceneStyle={getSceneStyle} showNavigationBar={false} >
+              <Scene key="modal" component={Modal} >
+                <Scene key="root" hideNavBar hideTabBar>
+                  <Scene key="entertainment" direction="fade" component={Entertainment} title="Entertainment"/>
+                  <Scene key="shop" direction="fade" component={Shop} title="Shop"/>
+                  <Scene key="order" direction="fade" component={Order} title="Order"/>
+                  <Scene key="pay" direction="fade" component={Pay} title="Pay"/>
+                  {/* <Scene key="preview" direction="fade" type='reset' component={Preview} title="Preview"/> */}
+                  <Scene key="preview" direction="fade" component={connectComponent(Preview)} title="Preview"/>
+                  <Scene key="introduction" direction="fade" component={Introduction} title="Introduction"/>
+                  <Scene key="camera" direction="fade" initial component={Camera} title="Camera"/>
+                </Scene>
+                <Scene key="hairDetail" component={HairDetail} />
+                <Scene key="video" component={Video} />
+                <Scene key="share" component={Share} />
             </Scene>
-            <Scene key="hairDetail" component={HairDetail} />
-            <Scene key="video" component={Video} />
-            <Scene key="share" component={Share} />
-        </Scene>
-      </Router>
+          </Router>
+        </Provider>
     );
   }
 }

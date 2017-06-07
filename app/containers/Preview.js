@@ -4,25 +4,37 @@
 */
 
 import React from 'react';
-import {View} from "react-native";
+import {Alert, View, Text, TouchableOpacity} from "react-native";
 import styles from '../styles/Introduction';
 import BaiduMapDemo from '../components/baiduMap';
 
 
-export default class extends React.Component {
+class Preview extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
+    }
 
+    updateSrc() {
+        const { actions, photo } = this.props;
+        actions.addPhoto("abc");
     }
 
     render(){
+        const { actions, photo } = this.props;
         return (
-            <View style={[styles.container, this.props.style]}>
-                <BaiduMapDemo></BaiduMapDemo>
-            </View>
+            <TouchableOpacity style={[styles.container, this.props.style]} onPress={this.updateSrc.bind(this)}>
+                <Text>呵呵</Text>
+            </TouchableOpacity>
         );
     }
+}
+
+export const LayoutComponent = Preview;
+export function mapStateToProps(state){
+  return {
+      photo : state.photo
+  }
 }
